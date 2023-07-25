@@ -25,6 +25,7 @@
     "natural_disaster",
     "dark_flare",
     "cold_sweat",
+    "the_golden",
     "marathon",
     "spectrum_cyclone",
     "silent_clubstep",
@@ -34,6 +35,7 @@
     "aquatic_auroras",
     "sweeping_demon",
     "pagoda",
+    "knights_of_thunder",
     "anemesis",
     "ringy_paracosm",
     "silent_helheim",
@@ -155,7 +157,5 @@
     "molten_gear",
     "avalanche",
     "stereo_demoness",
-    "rgb",
-    "goner",
-    "shock_breaker"
+    "rgb"
 ]
