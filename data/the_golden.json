@@ -10,5 +10,11 @@
     "showcase": "https://www.youtube.com/watch?v=9YmF_58zjxE",
     "percentToQualify": 61,
     "records": [
+        {
+            "user": "Indy",
+            "link": "https://youtu.be/lzxkd3dd3zw",
+            "percent": 100,
+            "hz": 120
+        }
     ]
 }    
