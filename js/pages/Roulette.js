@@ -13,7 +13,7 @@ export default {
         <main v-else class="page-roulette">
             <div class="sidebar surface">
                 <p class="type-label-md" style="color: #aaa">
-                    Shameless copy of the Extreme Demon Roulette by <a href="https://matcool.github.io/extreme-demon-roulette/" target="_blank">matcool</a>.
+                    Orijinal rulet <a href="https://matcool.github.io/extreme-demon-roulette/" target="_blank">matcool tarafından yapıldı.</a>.
                 </p>
                 <form class="options">
                     <div class="check">
@@ -24,16 +24,16 @@ export default {
                         <input type="checkbox" id="extended" value="Extended List" v-model="useExtendedList">
                         <label for="extended">Extended List</label>
                     </div>
-                    <Btn @click.native.prevent="onStart">{{ levels.length === 0 ? 'Start' : 'Restart'}}</Btn>
+                    <Btn @click.native.prevent="onStart">{{ levels.length === 0 ? 'Başla' : 'Sıfırla'}}</Btn>
                 </form>
                 <p class="type-label-md" style="color: #aaa">
-                    The roulette saves automatically.
+                    Rulet otomatik olarak kaydedilir.   
                 </p>
                 <form class="save">
-                    <p>Manual Load/Save</p>
+                    <p>Manuel Yükleme/Kaydetme</p>
                     <div class="btns">
-                        <Btn @click.native.prevent="onImport">Import</Btn>
-                        <Btn :disabled="!isActive" @click.native.prevent="onExport">Export</Btn>
+                        <Btn @click.native.prevent="onImport">Yükle</Btn>
+                        <Btn :disabled="!isActive" @click.native.prevent="onExport">Kaydet</Btn>
                     </div>
                 </form>
             </div>
@@ -63,16 +63,16 @@ export default {
                             </div>
                             <form class="actions" v-if="!givenUp">
                                 <input type="number" v-model="percentage" :placeholder="placeholder" :min="currentPercentage + 1" max=100>
-                                <Btn @click.native.prevent="onDone">Done</Btn>
-                                <Btn @click.native.prevent="onGiveUp" style="background-color: #e91e63;">Give Up</Btn>
+                                <Btn @click.native.prevent="onDone">Devam</Btn>
+                                <Btn @click.native.prevent="onGiveUp" style="background-color: #e91e63;">Vazgeç</Btn>
                             </form>
                         </div>
                         <!-- Results -->
                         <div v-if="givenUp || hasCompleted" class="results">
-                            <h1>Results</h1>
-                            <p>Number of levels: {{ progression.length }}</p>
-                            <p>Highest percent: {{ currentPercentage }}%</p>
-                            <Btn v-if="currentPercentage < 99 && !hasCompleted" @click.native.prevent="showRemaining = true">Show remaining levels</Btn>
+                            <h1>Sonuç</h1>
+                            <p>Tamamlanan Level Sayısı: {{ progression.length }}</p>
+                            <p>En Yüksek Yüzde: {{ currentPercentage }}%</p>
+                            <Btn v-if="currentPercentage < 99 && !hasCompleted" @click.native.prevent="showRemaining = true">Kalan Levelleri Göster</Btn>
                         </div>
                         <!-- Remaining Levels -->
                         <template v-if="givenUp && showRemaining">
@@ -137,7 +137,7 @@ export default {
             return this.progression[this.progression.length - 1] || 0;
         },
         placeholder() {
-            return `At least ${this.currentPercentage + 1}%`;
+            return `En az ${this.currentPercentage + 1}% yap.`;
         },
         hasCompleted() {
             return (
@@ -159,7 +159,7 @@ export default {
         getYoutubeIdFromUrl,
         async onStart() {
             if (this.isActive) {
-                this.showToast("Give up before starting a new roulette.");
+                this.showToast("Yeni bir rulet başlatmadan önce şuankini bitir.");
                 return;
             }
 
@@ -218,7 +218,7 @@ export default {
                 this.percentage <= this.currentPercentage ||
                 this.percentage > 100
             ) {
-                this.showToast("Invalid percentage.");
+                this.showToast("Geçersiz yüzde.");
                 return;
             }
 
@@ -237,7 +237,7 @@ export default {
             if (
                 this.isActive &&
                 !window.confirm(
-                    "This will overwrite the currently running roulette. Continue?"
+                    "Bu şuanki ruletin üstüne yazılacaktır. Devam etmek istiyor musunuz?"
                 )
             ) {
                 return;
@@ -251,7 +251,7 @@ export default {
             const file = this.fileInput.files[0];
 
             if (file.type !== "application/json") {
-                this.showToast("Invalid file.");
+                this.showToast("Geçersiz dosya.");
                 return;
             }
 
@@ -259,7 +259,7 @@ export default {
                 const roulette = JSON.parse(await file.text());
 
                 if (!roulette.levels || !roulette.progression) {
-                    this.showToast("Invalid file.");
+                    this.showToast("Geçersiz dosya.");
                     return;
                 }
 
@@ -270,7 +270,7 @@ export default {
                 this.showRemaining = false;
                 this.percentage = undefined;
             } catch {
-                this.showToast("Invalid file.");
+                this.showToast("Geçersiz dosya.");
                 return;
             }
         },
@@ -286,7 +286,7 @@ export default {
             );
             const a = document.createElement("a");
             a.href = URL.createObjectURL(file);
-            a.download = "tsl_roulette";
+            a.download = "TurkList_rulet";
             a.click();
             URL.revokeObjectURL(a.href);
         },
