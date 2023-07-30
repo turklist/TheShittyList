@@ -51,7 +51,7 @@ export default {
                     <iframe class="video" id="videoframe" :src="video" frameborder="0"></iframe>
                     <ul class="stats">
                         <li>
-                            <div class="type-title-sm">Points when completed</div>
+                            <div class="type-title-sm">Geçince Kazanılan Puan</div>
                             <p>{{ score(selected + 1, 100, level.percentToQualify) }}</p>
                         </li>
                         <li>
@@ -59,13 +59,13 @@ export default {
                             <p>{{ level.id }}</p>
                         </li>
                         <li>
-                            <div class="type-title-sm">Password</div>
-                            <p>{{ level.password || 'Free to Copy' }}</p>
+                            <div class="type-title-sm">Levelin Şifresi</div>
+                            <p>{{ level.password || 'Yok' }}</p>
                         </li>
                     </ul>
-                    <h2>Records</h2>
-                    <p v-if="selected + 1 <= 75"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
-                    <p v-else-if="selected +1 <= 150"><strong>100%</strong> or better to qualify</p>
+                    <h2>Recordlar</h2>
+                    <p v-if="selected + 1 <= 75">Record atabilmek için <strong>{{ level.percentToQualify }}%</strong> ya da daha fazla yap</p>
+                    <p v-else-if="selected +1 <= 150">Record atabilmek için <strong>100%</strong> ya da daha fazla yap</p>
                     <p v-else>This level does not accept new records.</p>
                     <table class="records">
                         <tr v-for="record in level.records" class="record">
@@ -79,7 +79,7 @@ export default {
                                 <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
                             </td>
                             <td class="hz">
-                                <p>{{ record.hz }}Hz</p>
+                                <p>{{ record.hz }}FPS</p>
                             </td>
                         </tr>
                     </table>
@@ -94,7 +94,7 @@ export default {
                         <p class="error" v-for="error of errors">{{ error }}</p>
                     </div>
                     <template v-if="editors">
-                        <h3>List Editors</h3>
+                        <h3>List Editörleri</h3>
                         <ol class="editors">
                             <li v-for="editor in editors">
                                 <img :src="\`/assets/\${roleIconMap[editor.role]}\${(store.dark || store.shitty) ? '-dark' : ''}.svg\`" :alt="editor.role">
